@@ -1,4 +1,5 @@
 # This has the common setup for all dockerfiles in the build system. Should come at the end of the dockerfile.
+# Assumes the user is root
 
 # Change to root user
 USER root

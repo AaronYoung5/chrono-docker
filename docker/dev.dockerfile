@@ -5,7 +5,9 @@
 INCLUDE ./docker/common/base.dockerfile
 
 # Snippets
-INCLUDE ./docker/snippets/micromamba.dockerfile
+INCLUDE ./docker/snippets/ros.dockerfile
+INCLUDE ./docker/snippets/cuda.dockerfile
+INCLUDE ./docker/snippets/chrono.dockerfile
 
 # Will copy in other common configurations for this build
 INCLUDE ./docker/common/common.dockerfile

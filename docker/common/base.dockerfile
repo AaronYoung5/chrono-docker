@@ -28,9 +28,10 @@ ARG USER_UID=1000
 ARG USER_GID=1000
 ARG USER_GROUPS=""
 RUN if getent passwd ${USER_UID}; then \
-        deluser $(getent passwd ${USER_UID} | cut -d: -f1); \
+        userdel -r $(getent passwd ${USER_UID} | cut -d: -f1); \
     fi && \
-    adduser --shell /bin/${USERSHELL} --disabled-password --gecos "" ${USERNAME} && \
+    useradd --shell /bin/${USERSHELL} --create-home --password "" ${USERNAME} && \
+    passwd -d ${USERNAME} && \
     echo "${USERNAME} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/${USERNAME} && \
     chmod 0440 /etc/sudoers.d/${USERNAME} && \
     groupmod -o -g ${USER_GID} ${USERNAME} && \
